@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.newsapp.model.User;
+
 @RestController
 @RequestMapping("/hello")
 public class HelloController {
 
 	@GetMapping
-	public ResponseEntity<String> hello(@RequestParam(defaultValue = "") String name){
-		return new ResponseEntity<>("Hello " + name,HttpStatus.OK);
+	public ResponseEntity<User> hello(@RequestParam(defaultValue = "ban") String name){
+		User user = new User(name);
+		return new ResponseEntity<>(user,HttpStatus.OK);
 	}
 }
